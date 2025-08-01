@@ -4,11 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+    <title>Gold Handicap</title>
 </head>
 
 <body>
+    <h1>Golf Handicap Calculator</h1>
+    <p>Please input the following information. Then click the submit button:</p>
+    <form id="form1" action="/Golf-Handicap/main.html">
 
+        Course: <input type="text" name="course"><br><br>
+
+        Score: <input type="int" name="score"><br><br>
+
+        Course Rating: <input type="int" name="rating"><br><br>
+
+        Slope Rating: <input type="int" name="slope"><br><br>
+
+
+        <input type="button" onclick="save()" value="Submit">
+
+    </form>
+    <script>
+        function save() {
+            document.getElementById("form1").submit()
+        }
+    </script>
 </body>
 
 </html>
