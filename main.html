@@ -21,7 +21,10 @@
     </form>
 
     <script>
+        //sets the variable to the element id pull
         let courseName = null;
+        //empty array for the course names
+        const courses = []
 
         document.getElementById("form1").addEventListener("submit", function (event) {
             event.preventDefault(); // Stop page reload
@@ -30,6 +33,14 @@
             courseName = document.getElementById("course").value;
 
             console.log("Course submitted:", courseName);
+            //pulling course data for my array 
+            let courseEntry = document.getElementById
+                ("course").value
+            //puts name in the array
+            courses.push({ courseEntry })
+
+            console.log(courses)
+
         });
 
 
