@@ -4,31 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="main.css">
-    <title>Gold Handicap</title>
+    <title>Golf Handicap</title>
 </head>
 
 <body>
     <h1>Golf Handicap Calculator</h1>
     <p>Please input the following information. Then click the submit button:</p>
-    <form id="form1" action="/Golf-Handicap/main.html">
 
-        Course: <input type="text" name="course"><br><br>
-
-        Score: <input type="int" name="score"><br><br>
-
+    <form id="form1">
+        Course: <input type="text" id="course" name="course"><br><br>
+        Score: <input type="number" name="score"><br><br>
         Course Rating: <input type="int" name="rating"><br><br>
+        Slope Rating: <input type="number" name="slope"><br><br>
 
-        Slope Rating: <input type="int" name="slope"><br><br>
-
-
-        <input type="button" onclick="save()" value="Submit">
-
+        <button type="submit">Submit</button>
     </form>
+
     <script>
-        function save() {
-            document.getElementById("form1").submit()
-        }
+        let courseName = null;
+
+        document.getElementById("form1").addEventListener("submit", function (event) {
+            event.preventDefault(); // Stop page reload
+
+            // Get the value of the "course" input
+            courseName = document.getElementById("course").value;
+
+            console.log("Course submitted:", courseName);
+        });
+
+
     </script>
 </body>
 
