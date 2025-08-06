@@ -24,25 +24,25 @@
     <script>
         //sets the variable to the element id pull
         let courseName = null;
+
         //empty array for the course names
-        const courses = []
-
+        const data = []
+        //pulls form data and listens for the button click
         document.getElementById("form1").addEventListener("submit", function (event) {
-            event.preventDefault(); // Stop page reload
+            event.preventDefault();
+            const form = new form(event.target);
 
-            // Get the value of the "course" input
-            courseName = document.getElementById("course").value;
+            //creates the storage object with reference key
+            const entries = {}
 
-            console.log("Course submitted:", courseName);
-            //pulling course data for my array 
-            let courseEntry = document.getElementById
-                ("course").value
-            //puts name in the array
-            courses.push({ courseEntry })
-
-            console.log(courses)
-
-        });
+            form.forEach((value, key) => {
+                entries[key] = Number(value);
+            });
+            //puts data object into the array and calls it
+            data.push(entries);
+            console.log(data)
+            event.target.reset()
+        })
 
 
     </script>
