@@ -13,38 +13,39 @@
     <p>Please input the following information. Then click the submit button:</p>
 
     <form id="form1">
-        Course: <input type="text" id="course" name="course"><br><br>
+        Course: <input type="text" name="course"><br><br>
         Score: <input type="number" name="score"><br><br>
-        Course Rating: <input type="int" name="rating"><br><br>
+        Course Rating: <input type="number" step="0.1" name="rating"><br><br>
         Slope Rating: <input type="number" name="slope"><br><br>
-
         <button type="submit">Submit</button>
     </form>
 
     <script>
-        //sets the variable to the element id pull
-        let courseName = null;
+        // Empty array for all submitted rounds
+        const data = [];
 
-        //empty array for the course names
-        const data = []
-        //pulls form data and listens for the button click
         document.getElementById("form1").addEventListener("submit", function (event) {
-            event.preventDefault();
-            const form = new form(event.target);
+            event.preventDefault(); // Stop page refresh
+            console.log("Form submitted");
 
-            //creates the storage object with reference key
-            const entries = {}
+            // Read form data
+            const formData = new FormData(event.target);
 
-            form.forEach((value, key) => {
-                entries[key] = Number(value);
+            // Convert to plain object
+            const entries = {};
+            formData.forEach((value, key) => {
+                // Keep numbers as numbers where possible
+                entries[key] = isNaN(value) ? value : Number(value);
             });
-            //puts data object into the array and calls it
+
+            // Store in array
             data.push(entries);
-            console.log(data)
-            event.target.reset()
-        })
 
+            console.log("All entries:", data);
 
+            // Reset form
+            event.target.reset();
+        });
     </script>
 </body>
 
