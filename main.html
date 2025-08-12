@@ -20,10 +20,11 @@
         <button type="submit">Submit</button>
     </form>
 
+    <h2>Your Handicap: <span id="handicapDisplay"></span></h2>
     <script>
         // Empty array for all submitted rounds
         const data = [];
-
+        const scoreDiffs = []
         document.getElementById("form1").addEventListener("submit", function (event) {
             event.preventDefault(); // Stop page refresh
             console.log("Form submitted");
@@ -43,9 +44,26 @@
 
             console.log("All entries:", data);
 
+
+            // sorts my array from smallest to largest score
+            data.sort((a, b) => Number(a.score) - Number(b.score));
+            console.log(data)
+            // calculates the score differences and logs to an array
+            const scoreDiff = ((entries.score - entries.rating) * 113) / entries.slope
+
+            scoreDiffs.push(scoreDiff)
+            console.log(scoreDiffs)
+
+            // calculate the scores diff average to create a handicap
+            const handicap = scoreDiffs.reduce((sum, diff) => sum + diff, 0) / scoreDiffs.length
+            console.log(handicap)
+
+            document.getElementById("handicapDisplay").textContent = handicap.toFixed(1);
             // Reset form
             event.target.reset();
         });
+
+
     </script>
 </body>
 
