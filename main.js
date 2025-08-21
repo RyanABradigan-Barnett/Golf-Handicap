@@ -1,16 +1,25 @@
-const mysql = require("mysql2");
+const { Client } = require('pg');
 
-const con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "Tiger369!",
-    database: "Golf Handicap"
-});
+const dbConfig = {
+    user: 'root',
+    password: 'Tiger369',
+    host: 'localhost',
+    port: 5432,
+    database: 'golf_calculator',
+};
 
-con.connect((err) => {
-    if (err) {
-        console.error("Error connecting:", err.message);
-        return;
+const client = new Client(dbConfig);
+
+async function connect() {
+    try {
+        await client.connect();
+        console.log('Connected')
+    } catch (err) {
+        console.error('Error connecting')
+    } finally {
+        await client.end();
+        console.log('Closed')
     }
-    console.log("Connected!");
-});
+}
+
+connect()
